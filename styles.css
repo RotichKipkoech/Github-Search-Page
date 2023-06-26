@@ -1,0 +1,32 @@
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    color: rgb(24, 134, 134);
+}
+
+p {
+    text-align: center;
+}
+
+#search {
+    text-align: center;
+}
+
+#btn {
+    margin-left: 360px;
+    margin-top: 50px;
+    border-radius: 60px;
+    background-color: rgb(71, 209, 209);
+    height: 70px;
+    width: 200px;
+}
+
+input {
+    border-radius: 70px;
+    height: 60px;
+    width: 500px;
+}
+
+#search-input {
+    text-align: center;
+}
