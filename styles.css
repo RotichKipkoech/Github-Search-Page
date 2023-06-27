@@ -8,12 +8,12 @@ p {
     text-align: center;
 }
 
-#search {
+#searchcontainer {
     text-align: center;
 }
 
-#btn {
-    margin-left: 360px;
+button {
+    
     margin-top: 50px;
     border-radius: 60px;
     background-color: rgb(71, 209, 209);
@@ -29,4 +29,8 @@ input {
 
 #search-input {
     text-align: center;
+}
+
+.container {
+    margin: 20px;
 }
