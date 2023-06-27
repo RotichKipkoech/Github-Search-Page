@@ -28,21 +28,29 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log(data);
 
                 var avatarUrl = data.avatar_url;
+                var username = data.login;
+                var repoLink = data.html_url;
 
                 if (avatarUrl) {
-                    var link = document.createElement('a');
-                    link.setAttribute('target', '_blank');
-                    link.setAttribute('href', "https://www.github.com/" + originalName);
-
                     var avatarImg = document.createElement('img');
                     avatarImg.setAttribute('src', avatarUrl);
                     avatarImg.setAttribute('alt', 'Avatar');
-
-                    link.appendChild(avatarImg);
-                    resultContainer.appendChild(link);
+                    resultContainer.appendChild(avatarImg);
                 } else {
                     resultContainer.textContent = "Avatar not found";
                 }
+
+                var usernameElement = document.createElement('p');
+                usernameElement.textContent = "Username: " + username;
+                resultContainer.appendChild(usernameElement);
+
+                var repoLinkElement = document.createElement('p');
+                var link = document.createElement('a');
+                link.setAttribute('target', '_blank');
+                link.setAttribute('href', repoLink);
+                link.textContent = "Repository Link";
+                repoLinkElement.appendChild(link);
+                resultContainer.appendChild(repoLinkElement);
             })
             .catch((error) => {
                 console.log(error);
