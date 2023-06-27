@@ -1,15 +1,18 @@
 document.addEventListener("DOMContentLoaded", function() {
     var form = document.getElementById('myForm');
+    var searchInput = document.getElementById("search");
     var resultContainer = document.getElementById('results');
+    var suggestionsContainer = document.getElementById('suggestions');
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        var search = document.getElementById("search").value;
+        var search = searchInput.value;
 
         var originalName = search.trim();
 
         resultContainer.innerHTML = "";
+        suggestionsContainer.innerHTML = "";
 
         fetch("https://api.github.com/users/" + originalName, {
             headers: {
@@ -55,6 +58,46 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch((error) => {
                 console.log(error);
                 resultContainer.textContent = "Error: " + error.message;
+            });
+    });
+
+    searchInput.addEventListener('input', function() {
+        var search = searchInput.value;
+
+        if (search.trim() === "") {
+            suggestionsContainer.innerHTML = "";
+            return;
+        }
+
+        fetch("https://api.github.com/search/users?q=" + search)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Error fetching data");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+
+                suggestionsContainer.innerHTML = "";
+
+                var users = data.items;
+
+                users.forEach((user) => {
+                    var suggestionLink = document.createElement('a');
+                    suggestionLink.setAttribute('target', '_blank');
+                    suggestionLink.setAttribute('href', user.html_url);
+                    suggestionLink.textContent = user.login;
+
+                    var suggestionItem = document.createElement('p');
+                    suggestionItem.appendChild(suggestionLink);
+
+                    suggestionsContainer.appendChild(suggestionItem);
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+                suggestionsContainer.textContent = "Error: " + error.message;
             });
     });
 });
