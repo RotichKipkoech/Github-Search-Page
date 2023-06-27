@@ -48,3 +48,20 @@ input {
 .form-group {
     margin-bottom: 10px;
 }
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.avatar-img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+

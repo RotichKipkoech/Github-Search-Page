@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     var avatarImg = document.createElement('img');
                     avatarImg.setAttribute('src', avatarUrl);
                     avatarImg.setAttribute('alt', 'Avatar');
+                    avatarImg.classList.add('avatar-img');
                     resultContainer.appendChild(avatarImg);
                 } else {
                     resultContainer.textContent = "Avatar not found";
